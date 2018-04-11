@@ -1,0 +1,51 @@
+.bord {
+	width: 100%;
+	height: 100px;
+	background-color: lightsteelblue;
+	border-radius: 50px;
+}
+
+.titre {
+	text-align: center;
+	font-size: 80px;
+	font-family: Snell Roundhand;
+}
+
+.saut {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#nav{
+	list-style-type: none;
+	padding: 0; 
+	margin-top: 0px;
+	overflow: hidden;
+	background-color: lightsteelblue;
+	text-align: center;
+	border-radius: 25px; 
+}
+
+#nav li{
+	float: left;
+	width: 33%;
+}
+
+#nav li a {
+	display: block;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	color: black;
+	font-family: 'Cabin', sans-serif;
+	font-size: 20px;
+}
+
+
+li a:hover{
+	background-color: silver;
+}
+
+.marge {
+	padding-top: 100px
+}
