@@ -42,7 +42,7 @@
 				<input class="style" type="text" name="nom" placeholder="Nom" size="45" />
 			</div>
 			<div class="marge2">
-				<input class="style" type="text" name="prénom" placeholder="Prénom" size="45" />
+				<input class="style" type="text" name="prenom" placeholder="Prénom" size="45" />
 			</div>
 
 			<div class="marge2">
