@@ -3,25 +3,17 @@
 <head>
 	<title>Bibliothèque PMF</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/nav.css" />
-	<link rel="stylesheet" type="text/css" href="css/abonne.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+
 </head>
 
 <body>
 
-	<a href="accueil.php"><div class="bord">
-		<h1 class="titre">
+	<a class="titre" href="accueil.php"><div class="bord">
+		<h1 class="titre1">
 			Bibliothèque de PMF
 		</h1>
 	</div></a>
-
-	<div class="saut">
-		<ul id="nav">
-			<li><a href="accueil.php">Accueil</a></li>
-			<li><a href="admin.php">Administrateur</a></li>
-			<li><a href="#">Abonnées</a></li>
-		</ul>
-	</div>
 
 	<div class="marge"></div>
 

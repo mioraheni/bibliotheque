@@ -52,8 +52,8 @@
 <head>
 	<title>Bibliothèque PMF </title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/nav.css" />
-	<link rel="stylesheet" type="text/css" href="css/abonne.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+
 </head>
 
 <body>

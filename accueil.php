@@ -3,13 +3,13 @@
 <head>
 	<title>Bibliothèque PMF</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/nav.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 </head>
 
 <body>
 
 	<div class="bord">
-		<h1 class="titre">
+		<h1 class="titre1">
 			Bibliothèque de PMF
 		</h1>
 	</div>

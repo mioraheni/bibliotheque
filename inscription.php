@@ -4,8 +4,7 @@
 <head>
 	<title>Bibliothèque PMF</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/nav.css" />
-	<link rel="stylesheet" type="text/css" href="css/abonne.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
 </head>
 
 <body>
@@ -42,7 +41,6 @@
 			<div class="marge2">
 				<input class="style" type="text" name="prenom" placeholder="Prénom" size="45" />
 			</div>
-
 			<div class="marge2">
 			<input class="appuie" type="submit" value= "Enregistrer" />
 			</div>
