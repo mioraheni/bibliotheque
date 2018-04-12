@@ -2,20 +2,19 @@
 	
 	include "database.php";
 	
-	$message = "";
 	
-	if(isset($_POST["id"]) && isset($_POST["motdepass"]) && isset($_POST["mel"]) && isset($_POST["nom"]) && isset($_POST["prenom"])){
+	if(isset($_POST["motdepass"]) && isset($_POST["mel"]) && isset($_POST["nom"]) && isset($_POST["prenom"]))
+	{
 
 		
-		$abonne=$bdd->prepare('INSERT INTO Membre VALUES (:idmembre, :motdepasse, :mail, :nommembre, :prenommembre, NULL);');
-		$abonne->bindValue(':idmembre',"haha",PDO::PARAM_STR); 
-		$abonne->bindValue(':motdepasse',"TEST", PDO::PARAM_STR); 
-		$abonne->bindValue(':mail',"TEST", PDO::PARAM_STR); 
-		$abonne->bindValue(':nommembre',"TEST", PDO::PARAM_STR); 
-		$abonne->bindValue(':prenommembre',"TEST", PDO::PARAM_STR);
+		$abonne=$bdd->prepare("INSERT INTO User(mail, motdepasse, nomUser, prenomUser) VALUES (:mail, :motdepasse, :nomUser, :prenomUser)");
+		$abonne->bindValue(':mail',$_POST["mel"],PDO::PARAM_STR); 
+		$abonne->bindValue(':motdepasse',$_POST["motdepass"], PDO::PARAM_STR); 
+		$abonne->bindValue(':nomUser',$_POST["nom"], PDO::PARAM_STR); 
+		$abonne->bindValue(':prenomUser',$_POST["prenom"], PDO::PARAM_STR); 
 
-		$abonne->execute();
-		
+		$enregistrer=$abonne->execute();
+	}
 		
 		if($enregistrer){
 			$message='Vous êtes bien inscrit!';
@@ -23,7 +22,7 @@
 		else{
 			$message='Echec d\inscription';
 		}
-	}
+	
 
 ?>
 <!DOCTYPE html>

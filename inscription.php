@@ -30,14 +30,12 @@
 		<h2 class="connecter"><u>Inscription</u></h2>
 		<form method="POST" action="inscrit.php">
 			<div>
-				<input class="style" type="text" name="id" placeholder="Identifiant" size="45" />
+				<input class="style" type="email" name="mel" placeholder="Mail" size="45" />
 			</div>
 			<div class="marge2">
 				<input class="style" type="password" name="motdepass" placeholder="Mot de Passe" size="45" />
 			</div>
-			<div>
-				<input class="style" type="email" name="mel" placeholder="Mail" size="45" />
-			</div>
+			
 			<div class="marge2">
 				<input class="style" type="text" name="nom" placeholder="Nom" size="45" />
 			</div>
