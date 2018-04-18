@@ -14,11 +14,11 @@
 
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
-
+	<link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
 <body>
-	<?php include "nav.php"; ?>
+	<?php include "nav2.php"; ?>
 
 
 	<div class="container">
@@ -46,7 +46,7 @@
 										<b><a href="">S'inscrire?</a></b>
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">Se connecter</button>
+										<button class="btn bouton" type="submit">Se connecter</button>
 									</div>
 								</div>
 							</form>
