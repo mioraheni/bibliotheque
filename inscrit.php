@@ -17,7 +17,7 @@
 
 		$abonne=$bdd->prepare("INSERT INTO User(mail, motdepasse, nomUser, prenomUser) VALUES (:mail, :motdepasse, :nomUser, :prenomUser)");
 		//creation de personne faker
-		/*for($i=0; $i<40; $i++){
+		for($i=0; $i<40; $i++){
 			$mail = $faker->email;
 			$mdp = sha1($faker->password);
 			$nom = $faker->lastname;
@@ -28,15 +28,17 @@
 			$abonne->bindValue(':nomUser',$nom, PDO::PARAM_STR); 
 			$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR);
 			$enregistrer=$abonne->execute();
-		}*/
+		}
 
 		// création classique 
-		$abonne->bindValue(':mail',$mail,PDO::PARAM_STR); 
+		/*$abonne->bindValue(':mail',$mail,PDO::PARAM_STR); 
 		$abonne->bindValue(':motdepasse',$mdp, PDO::PARAM_STR); 
 		$abonne->bindValue(':nomUser',$nom, PDO::PARAM_STR); 
 		$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR); 
-
+		
+		
 		$enregistrer=$abonne->execute();
+		*/
 	}
 		
 	if($enregistrer){
