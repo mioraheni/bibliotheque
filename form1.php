@@ -23,12 +23,15 @@ if(isset($_POST["motdepass"]) && isset($_POST["mel"]) && isset($_POST["nom"]) &&
 			$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR); 
 
 			$enregistrer=$abonne->execute();
-			header("Location: inscrit.php");
+			header('Location:inscrit.php');
+			exit;
 		}
+
 
 		else
 		{
-			header("Location: inscription.php?error=1");
+			header('Location:inscription.php?error=1');
+			exit;
 		}
 }
 	
