@@ -1,80 +1,62 @@
-<?php
-	
-	include "database.php";
-	include "Faker/src/autoload.php";
-
-	$faker = Faker\Factory::create('fr_FR');
-	
-	
-	
-	
-	if(isset($_POST["motdepass"]) && isset($_POST["mel"]) && isset($_POST["nom"]) && isset($_POST["prenom"])){
-		$mail = htmlspecialchars($_POST["mel"]);
-		$mdp = htmlspecialchars($_POST["motdepass"]);
-		$mdp = sha1($mdp);
-		$nom = htmlspecialchars($_POST["nom"]);
-		$prenom = htmlspecialchars($_POST["prenom"]);
-
-		$abonne=$bdd->prepare("INSERT INTO User(mail, motdepasse, nomUser, prenomUser) VALUES (:mail, :motdepasse, :nomUser, :prenomUser)");
-		//creation de personne faker
-		for($i=0; $i<40; $i++){
-			$mail = $faker->email;
-			$mdp = sha1($faker->password);
-			$nom = $faker->lastname;
-			$prenom = $faker->firstname;
-
-			$abonne->bindValue(':mail',$mail,PDO::PARAM_STR); 
-			$abonne->bindValue(':motdepasse',$mdp, PDO::PARAM_STR); 
-			$abonne->bindValue(':nomUser',$nom, PDO::PARAM_STR); 
-			$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR);
-			$enregistrer=$abonne->execute();
-		}
-
-		// création classique 
-		/*$abonne->bindValue(':mail',$mail,PDO::PARAM_STR); 
-		$abonne->bindValue(':motdepasse',$mdp, PDO::PARAM_STR); 
-		$abonne->bindValue(':nomUser',$nom, PDO::PARAM_STR); 
-		$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR); 
-		
-		
-		$enregistrer=$abonne->execute();
-		*/
-	}
-		
-	if($enregistrer){
-		$message='Vous êtes bien inscrit!';
-	}
-	else{
-		$message='Echec d\inscription';
-	}
-	
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Bibliothèque PMF </title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+	
+	<title>Connexion-Bibliothque PMF</title>
+	
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
+	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body>
+<body style="background-image: url(assets/images/bibliotheques.jpg); background-repeat: no-repeat; background-size: 100%;">
+	<?php 
+		include "nav2.php"; 
+		include "database.php";
+		include "form1.php";
+	?>
 
-	<div class="bord">
-		<h1 class="titre">
-			Bibliothèque de PMF
-		</h1>
-	</div>
+	<div class="container">
 
-	<div class="marge"></div>
+		<div class="row">
+			
+				<div class="marge3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div style="padding: 100px; text-align: center;">
+							<p class="texte"><?php echo 'Vous êtes bien inscrit!';?></p>
+							<a href="signin.php"><input class="appuie" type="submit" value= "Se Connecter" /></a>
+						</div>
+					</div>
 
-	<p class="texte"><?php echo $message; ?></p>
+				</div>
+				
+				
+			
 
-	<div class="marge"></div>
+		</div>
+	</div>	
+	
 
-	<div class="cadre">
-		<a href="abonne.php"><input class="appuie" type="submit" value= "Se Connecter" /></a>
-	</div>
+	<?php include "footer.php"; ?>
+		
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
 
 </body>
 </html>

@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body>
+<body style="background-image: url(assets/images/bibliotheques.jpg); background-repeat: no-repeat; background-size: 100%;">
 	<?php include "nav2.php"; ?>
 
 
@@ -26,12 +26,12 @@
 		<div class="row">
 			
 				
-				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<div class="marge3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div style="padding: 100px">
 							<h3 class="thin text-center"><strong>Connexion</strong></h3>
 							
-							<form>
+							<form method="POST" action="connecter.php">
 								<div class="top-margin">
 									<input type="text" class="form-control" placeholder="Entrez votre identifiant">
 								</div>
@@ -43,10 +43,10 @@
 
 								<div class="row">
 									<div class="col-lg-8">
-										<b><a href="">S'inscrire?</a></b>
+										<b><a href="inscription.php">S'inscrire?</a></b>
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn bouton" type="submit">Se connecter</button>
+										<input class="appuie" type="submit" value="Se Connecter">
 									</div>
 								</div>
 							</form>

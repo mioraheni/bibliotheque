@@ -5,7 +5,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="#">Accueil</a></li>
+					<li class="active"><a href="index.php">Accueil</a></li>
 					<li><a href="#contact">Contact</a></li>
 					<li><a class="btn" href="signin.php">Connexion</a></li>
 				</ul>
@@ -15,9 +15,4 @@
 	
 
 	
-<div class="jumbotron top-space">
-	<div class="container">
-			
-		
-	</div>
-</div>
+
