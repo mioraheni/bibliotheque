@@ -68,6 +68,12 @@ li a:hover{
 	opacity: 0.95;
 }
 
+.margeMembre{
+	padding-top: 90px;
+	padding-bottom: 120px;
+	opacity: 0.95;
+}
+
 .cadre {
 	text-align: center;
 	font-size: 25px;
