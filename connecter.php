@@ -25,23 +25,44 @@ include "database.php";
 	<div class="margeMembre jumbotron top-space">
 		<div class="container">
 			<h3>Bonjour <?php echo strtoupper($_SESSION["nom"]) . " " . ucfirst($_SESSION["prenomUser"]);?></h3>
-			<h4>Vos réservations</h4>
+			<?php
+			if($_SESSION["admin"] != 1){
+			?>
+				<h4>Vos réservations</h4>
+						
 				<?php
 				$req = $bdd->prepare("SELECT * FROM emprunts WHERE idUser = :iduser");
 				$req->bindValue(":iduser", $_SESSION["idUser"], PDO::PARAM_INT);
 				$req->execute();
-
-				while($mesLivres = $req->fetch()){
-					$req2 = $bdd->prepare("SELECT * FROM livre WHERE ISBN = :isbn");
-					$req2->bindValue(":isbn", $$mesLivres["ISBN"], PDO::PARAM_STR);
-					$livre = $req2->fetch();
-					var_dump($livre);
-					echo $livre["titre"];
+				$countLivre = $req->rowCount();
+				if($countLivre > 0){
+					echo '<table class="table">
+						<tr>
+							<th>ISBN</th>
+							<th>Titre du livre</th>
+							<th>Edition</th>
+						</tr>';
+						while($mesLivres = $req->fetch()){
+							echo "<tr>";
+							$req2 = $bdd->prepare("SELECT * FROM LIVRE WHERE ISBN = :isbn");
+							$req2->bindValue(":isbn", $mesLivres["ISBN"], PDO::PARAM_STR);
+							$req2->execute();
+							$livre = $req2->fetch();
+							echo "<td>" . $mesLivres["ISBN"] . "</td>";
+							echo "<td>" . utf8_encode($livre["titre"]) . "</td>";
+							echo "<td>" . utf8_encode($livre["edition"]) . "</td>";
+							echo "</tr>";
+						}
+					echo '</table>';
+				}else{
+					echo "vous n'avez pas de réservation";
 				}
 
 				?>
-			<h4>Votre liste d'envie</h4>
-			<h4>Vos réservations</h4>
+				<h4>Votre liste d'envie</h4>
+			<?php
+				}
+			?>
 		</div>
 	</div>
 
