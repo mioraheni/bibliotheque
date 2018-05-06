@@ -33,10 +33,10 @@
 							
 							<form method="POST" action="connecter.php">
 								<div class="top-margin">
-									<input type="text" class="form-control" placeholder="Entrez votre identifiant">
+									<input type="text" class="form-control" placeholder="Entrez votre adresse mail" name="mel">
 								</div>
 								<div class="top-margin">
-									<input type="password" class="form-control" placeholder="Entrez votre mot de passe">
+									<input type="password" class="form-control" placeholder="Entrez votre mot de passe" name="motdepass">
 								</div>
 
 								<hr>
