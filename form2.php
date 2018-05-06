@@ -26,6 +26,8 @@ if(isset($_POST["motdepass"]) && isset($_POST["mel"]))
 		}
 		header("location:connecter.php");
 	}
+}else{
+	header("location:index.php");
 }
 
 ?>
