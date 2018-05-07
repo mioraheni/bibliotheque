@@ -22,9 +22,12 @@ if(isset($_POST["motdepass"]) && isset($_POST["mel"]))
 		$_SESSION["mail"] = $user["mail"];
 		$_SESSION["nom"] = $user["nomUser"];
 		$_SESSION["prenomUser"] = $user["prenomUser"];
+		$_SESSION["timeConnect"] = date("H:i:s");
 		ob_start();
 		if($mail == "admin" || $mail == "rasmiora@gmail.com" || $mail == "xxbingru@gmail.com"){
 			$_SESSION["admin"] = 1;
+		}else{
+			$_SESSION["admin"] = 0;
 		}
 		header("location:connecter.php");
 	}else{
