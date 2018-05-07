@@ -1,16 +1,16 @@
 <div class="navbar navbar-inverse navbar-fixed-top headroom" >
 	<div class="container">
 		<div class="navbar-header">
-			<img src="assets/images/logo.png" width="200px" height="50px">
+			<a href="connecter.php"><img src="assets/images/logo.png" width="200px" height="50px"></a>
 		</div>
 		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav pull-right">
-				<li class="active"><a href="connecter.php">Accueil</a></li>
+			<ul class="nav navbar-nav pull-right navbarConnexion">
+				<li id="index"><a href="connecter.php">Accueil</a></li>
 				<?php
 				if($_SESSION["admin"] == 1){
 				?>
-				<li><a href="manageBiblio.php">Gestion Bibliothèque</a></li>
-				<li><a href="reservation.php">Gestion Utilisateur</a></li>
+				<li id="manageBiblio"><a href="manageBiblio.php">Gestion Bibliothèque</a></li>
+				<li id="manageUser"><a href="manageUser.php">Gestion Utilisateur</a></li>
 				<li><a href=""></a>
 				<?php
 				}else{

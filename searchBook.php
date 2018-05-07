@@ -19,6 +19,4 @@ if(isset($_POST["idBook"]) && $_POST["idBook"] != ""){
 	$paramLivre["etat"] = utf8_encode($livre["etat"]);
 	header("content-type: application/json");
 	echo json_encode($paramLivre);
-}else{
-	header("location:manageBiblio.php");
 }
