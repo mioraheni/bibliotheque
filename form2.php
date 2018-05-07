@@ -26,6 +26,8 @@ if(isset($_POST["motdepass"]) && isset($_POST["mel"]))
 		ob_start();
 		if($mail == "admin" || $mail == "rasmiora@gmail.com" || $mail == "xxbingru@gmail.com"){
 			$_SESSION["admin"] = 1;
+		}else{
+			$_SESSION["admin"] = 0;
 		}
 		header("location:connecter.php");
 	}else{
