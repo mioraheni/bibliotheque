@@ -24,6 +24,7 @@
 	<?php include "form1.php";?>
 	
 	<?php
+		$badRequest = "";
 		if(isset($_GET["error"]) && $_GET["error"] != ""){
 			$error = intval($_GET["error"]);
 			switch ($error){
@@ -31,8 +32,11 @@
 				$badRequest = "Le mail existe déjà";
 				break;
 			case 2:
-				$badRequest = "Mot de passe invalide";
-				break;		
+				$badRequest = "Les deux mots de passes doivent être identiques";
+				break;	
+			case 3:
+				$badRequest = "Votre mot de passe doit être supérieur à 6 caractères";
+				break;	
 			default:
 				$badRequest = "";
 				break;

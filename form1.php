@@ -17,22 +17,37 @@ if(isset($_POST["motdepass"]) && isset($_POST["remotdepass"]) && isset($_POST["m
 		$req->execute();
 		$count=$req->rowcount();
 
+<<<<<<< HEAD
 		if($count==0)
 		{
+=======
+		if($count==1){
+>>>>>>> 5aaef883d21e467e71c8d59d495bd291766c9eb5
 			header("Location:inscription.php?error=1");
 		}
 
-		else
-		{	
-			$abonne=$bdd->prepare("INSERT INTO User(mail, motdepasse, nomUser, prenomUser) VALUES (:mail, :motdepasse, :nomUser, :prenomUser)");
+		else{	
+			if ( strlen($_POST["motdepasse"]) >= 6 ) {
+			
+				if ( $mdp == $remdp ) {
+			
+					$abonne=$bdd->prepare("INSERT INTO User(mail, motdepasse, nomUser, prenomUser) VALUES (:mail, :motdepasse, :nomUser, :prenomUser)");
 
-			$abonne->bindValue(':mail',$mail,PDO::PARAM_STR); 
-			$abonne->bindValue(':motdepasse',$mdp, PDO::PARAM_STR); 
-			$abonne->bindValue(':nomUser',$nom, PDO::PARAM_STR); 
-			$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR); 
+					$abonne->bindValue(':mail',$mail,PDO::PARAM_STR); 
+					$abonne->bindValue(':motdepasse',$mdp, PDO::PARAM_STR); 
+					$abonne->bindValue(':nomUser',$nom, PDO::PARAM_STR); 
+					$abonne->bindValue(':prenomUser',$prenom, PDO::PARAM_STR); 
 
-			$enregistrer=$abonne->execute();
-			header("Location:inscrit.php");
+					$enregistrer=$abonne->execute();
+					header("Location:inscrit.php");
+				}
+				else{
+					header("Location:inscription.php?error=2");
+				}
+			}
+			else{
+				header("Location:inscription.php?error=3");
+			}
 		}
 }
 	
