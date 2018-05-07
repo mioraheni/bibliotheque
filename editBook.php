@@ -4,23 +4,27 @@ if(isset($_POST["ancienISBN"]) && isset($_POST["ISBN"]) && isset($_POST["titreLi
 
 	$ancienISBN = (htmlspecialchars($_POST["ancienISBN"]));
 	$ISBN = (htmlspecialchars($_POST["ISBN"]));
-	$titreLivre = (htmlspecialchars($_POST["titreLivre"]));
+	$titreLivre = utf8_decode(htmlspecialchars($_POST["titreLivre"]));
 	$editionLivre = (htmlspecialchars($_POST["editionLivre"]));
 	$nomAuteur = utf8_decode(ucfirst(ucwords(htmlspecialchars($_POST["nomAuteur"]))));
 	$prenomAuteur = (ucfirst(ucwords(htmlspecialchars($_POST["prenomAuteur"]))));
-	$etatLivreEdit = (htmlspecialchars($_POST["etatLivreEdit"]));
+	$etatLivreEdit = utf8_decode(htmlspecialchars($_POST["etatLivreEdit"]));
 
 	if($ISBN != $ancienISBN){
 		$req = $bdd->prepare("SELECT * FROM LIVRE WHERE ISBN = :isbn");
 		$req->bindValue(":isbn", $ISBN, PDO::PARAM_STR);
+		$req->execute();
 		$count = $req->rowCount();
 		if($count == 0){
-			$req = $bdd->prepare("UPDATE LIVRE SET ISBN = :isbn WHERE ISBN = :ancienISBN");
+			$req = $bdd->prepare("UPDATE LIVRE SET ISBN = :isbn WHERE ISBN = :ancienISBN ");
 			$req->bindValue(":isbn", $ISBN, PDO::PARAM_STR);
 			$req->bindValue(":ancienISBN", $ancienISBN, PDO::PARAM_STR);
 			$req->execute();
 		}else{
-			$paramLivre = "ISBN déjà existant";
+			header("content-type: application/json");
+			$paramLivre["error"] = "ISBN déjà existant, veuillez en choisir un autre";
+			echo json_encode($paramLivre);
+			exit;
 		}
 	}
 
@@ -28,14 +32,13 @@ if(isset($_POST["ancienISBN"]) && isset($_POST["ISBN"]) && isset($_POST["titreLi
 	$req->bindValue(":nomAuteur", $nomAuteur, PDO::PARAM_STR);
 	$req->bindValue(":prenomAuteur", $prenomAuteur, PDO::PARAM_STR);
 	$req->execute();
-	$test =	$req->fetch();
 	$count = $req->rowCount();
 	if($count == 0){
-		$req = $bdd->prepare("INSERT INTO AUTEUR VALUES ('', :nomAuteur, :prenomAuteur)");
+		$req = $bdd->prepare("INSERT INTO auteur (idAuteur, nomAuteur, prenomAuteur) VALUES (NULL, :nomAuteur, :prenomAuteur)");
 		$req->bindValue(":nomAuteur", $nomAuteur, PDO::PARAM_STR);
 		$req->bindValue(":prenomAuteur", $prenomAuteur, PDO::PARAM_STR);
 		$req->execute();
-		$idAuteur = $req->lastInsertId();
+		$idAuteur = $bdd->lastInsertId();
 	}else{
 		$auteur = $req->fetch();
 		$idAuteur = $auteur["idAuteur"];
@@ -51,14 +54,16 @@ if(isset($_POST["ancienISBN"]) && isset($_POST["ISBN"]) && isset($_POST["titreLi
 
 	$livre = $req->fetch();
 	$paramLivre["ISBN"] = $ISBN;  
-	$paramLivre["titre"] = utf8_decode($titreLivre); 
-	$paramLivre["edition"] = $editionLivre;  
-	$paramLivre["nomAuteur"] = $nomAuteur;  
-	$paramLivre["prenomAuteur"] = $prenomAuteur;  
-	$paramLivre["etat"] = $etatLivreEdit;  
+	$paramLivre["titre"] = utf8_encode($titreLivre); 
+	$paramLivre["edition"] = utf8_encode($editionLivre);  
+	$paramLivre["nomAuteur"] = utf8_encode($nomAuteur);  
+	$paramLivre["prenomAuteur"] = utf8_encode($prenomAuteur);  
+	$paramLivre["etat"] = utf8_encode($etatLivreEdit);  
 	
 	header("content-type: application/json");
 	echo json_encode($paramLivre);	
 }else{
-	header("location:manageBiblio.php");
+	header("content-type: application/json");
+	$paramLivre["error"] = "Veuillez remplir tous les champs du formulaire";
+	echo json_encode($paramLivre);
 }
