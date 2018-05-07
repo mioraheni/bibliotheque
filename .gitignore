@@ -11,6 +11,27 @@ database.php
 .phpintel/fcb5d544a2009531bd8989f971a35674
 .phpintel/ee33d294cff59d8d75986adf813742e5
 .phpintel/index
+<<<<<<< HEAD
+*.css
+connecter.php
+*.php
+connecter.php
+form1.php
+form2.php
+navbarConnexion.php
+*.php
+inscription.php
+form2.php
+connecter.php
+form1.php
+form2.php
+inscription.php
+navbarConnexion.php
+signin.php
+form2.php
+navbarConnexion.php
+navbarConnexion.php
+=======
 database.php
 .phpintel/f84df86d502e90bf83eabf7b8dd6bd22
 .phpintel/1634c5b0e3290a66c96cb049ac123dc1
@@ -25,3 +46,4 @@ database.php
 .phpintel/f86ccd156ef837ed5eaac045e2488d65
 database.php
 database.php
+>>>>>>> b5fdcd6390cf6ad26072dd69c443343bcb9f4087

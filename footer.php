@@ -28,21 +28,9 @@
 					</div>
 
 					<div class="col-md-6 widget">
+						<h3 class="widget-title">Text widget</h3>
 						<div class="widget-body">
-							<h4>Nombre de visiteurs :</h4>
 							<p><?php include "visiteurs.php"; ?></p>
-							
-							<?php
-								if(isset($_SESSION["idUser"])){
-									$heureConnexion = $_SESSION["timeConnect"];
-									$diff = abs(strtotime(date("H:i:s")) - strtotime($heureConnexion));
-									$tempsConnexion = intval($diff / 60);
-							?>
-									<h4>Temps de connexion :</h4>
-									<p>Vous êtes connecté depuis <?php echo $tempsConnexion; ?> minutes</p>
-							<?php 
-								}
-							?>
 						</div>
 					</div>
 
