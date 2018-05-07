@@ -2,6 +2,7 @@
 
 include "database.php";
 
+
 if(isset($_POST["motdepass"]) && isset($_POST["mel"]))
 {
 	$mail = htmlspecialchars($_POST["mel"]);
@@ -17,16 +18,21 @@ if(isset($_POST["motdepass"]) && isset($_POST["mel"]))
 		$user = $req->fetch();
 		
 		session_start();
-		$_SESSION['idUser'] = $user["idUser"];
-		$_SESSION['mail'] = $user["mail"];
-		$_SESSION['nom'] = $user["nomUser"];
-		$_SESSION['prenomUser'] = $user["nomUser"];
+		$_SESSION["idUser"] = $user["idUser"];
+		$_SESSION["mail"] = $user["mail"];
+		$_SESSION["nom"] = $user["nomUser"];
+		$_SESSION["prenomUser"] = $user["prenomUser"];
+		ob_start();
 		if($mail == "admin" || $mail == "rasmiora@gmail.com" || $mail == "xxbingru@gmail.com"){
 			$_SESSION["admin"] = 1;
 		}
 		header("location:connecter.php");
+	}else{
+		header("location:signin.php?error=Mauvais identifiant ou mot de passe");
 	}
-}else{
+}
+
+else{
 	header("location:index.php");
 }
 

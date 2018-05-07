@@ -21,9 +21,4 @@
 	</div>
 </header>
 	
-<div class="jumbotron top-space">
-	<div class="container">
-			
-		
-	</div>
-</div>
+
