@@ -14,12 +14,27 @@
 
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
 
 </head>
 
 <body class="home">
 	<?php include "nav.php"; ?>
 
+	<div class="jumbotron top-space">
+	<div class="container">
+			<ul>
+				<img class="saut" style="margin-left: 200px" src="assets/images/im1.jpg" width="200" height="250">
+			</ul>
+
+				<br>
+				<img class="saut" style="margin-left: 800px" src="assets/images/im2.jpg" width="200" height="250">
+				<br>
+				<img class="saut" style="margin-left: 200px" src="assets/images/im3.jpg" width="200" height="250">
+				<br>
+			
+	</div>
+</div>
 
 	<?php include "footer.php"; ?>
 		

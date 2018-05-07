@@ -92,7 +92,7 @@ addListerner();
 								color = "green";
 							}else if(livre["etat"] == "Non Disponible"){
 								color = "red";
-							}else if (livre["etat"] == "Commandé"){
+							}else if (livre["etat"] == "Commande"){
 								color = "orange";
 							}
 							$(this).parent().parent().children(".etat_Livre").text(livre["etat"]);
@@ -149,7 +149,7 @@ addListerner();
 						livreEtat = 'green;';
 					}else if(livre["etat"] == "Non Disponible"){
 						livreEtat = 'red;';
-					}else if(livre["etat"] == "Commandé"){
+					}else if(livre["etat"] == "Commande"){
 						livreEtat = 'orange;';
 					}
 					
