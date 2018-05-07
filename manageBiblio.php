@@ -112,7 +112,7 @@ include "database.php";
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<button type="button" class="btn btn-primary confirmEditBook">Valider les changements</button>
+						<button type="submit" class="btn btn-primary confirmEditBook">Valider les changements</button>
 					</div>
 				</form>
 			</div><!-- /.modal-content -->
@@ -161,7 +161,7 @@ include "database.php";
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<button type="button" class="btn btn-primary confirmAddingBook">Créer le livre</button>
+						<button type="submit" class="btn btn-primary confirmAddingBook">Créer le livre</button>
 					</div>
 				</form>
 			</div><!-- /.modal-content -->
