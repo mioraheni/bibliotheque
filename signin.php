@@ -22,7 +22,6 @@
 				<div class="panel panel-default">
 					<div style="padding: 100px">
 						<h3 class="thin text-center"><strong>Connexion</strong></h3>
-						
 						<form method="POST" action="form2.php">
 							<div class="top-margin">
 								<input type="text" class="form-control" placeholder="Entrez votre adresse mail" name="mel">

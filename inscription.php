@@ -49,7 +49,7 @@
 					<div class="panel panel-default">
 						<div style="padding: 100px">
 							<h3 class="thin text-center"><strong>Inscription</strong></h3>
-							<span style="color:red;"><?php echo $badRequest;?></span>
+							<span style="color:red;"><?php $badRequest = ""; echo $badRequest;?></span>
 							<form method="POST" action="">
 								<div class="top-margin">
 									<input type="email" id="mail" class="form-control" name="mel" placeholder="Mail" required size="45" />

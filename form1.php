@@ -17,7 +17,7 @@ if(isset($_POST["motdepass"]) && isset($_POST["remotdepass"]) && isset($_POST["m
 		$req->execute();
 		$count=$req->rowcount();
 
-		if($count==1)
+		if($count==0)
 		{
 			header("Location:inscription.php?error=1");
 		}

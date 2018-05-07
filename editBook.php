@@ -2,13 +2,13 @@
 include "database.php";
 if(isset($_POST["ancienISBN"]) && isset($_POST["ISBN"]) && isset($_POST["titreLivre"]) && isset($_POST["editionLivre"]) && isset($_POST["nomAuteur"]) && isset($_POST["prenomAuteur"]) && isset($_POST["etatLivreEdit"]) && $_POST["ISBN"] != "" && $_POST["titreLivre"] != "" && $_POST["editionLivre"] != "" && $_POST["nomAuteur"] != "" && $_POST["prenomAuteur"] != "" && $_POST["etatLivreEdit"] != "" && $_POST["ancienISBN"] != ""){
 
-	$ancienISBN = (htmlspecialchars($_POST["ancienISBN"]));
-	$ISBN = (htmlspecialchars($_POST["ISBN"]));
-	$titreLivre = utf8_decode(htmlspecialchars($_POST["titreLivre"]));
-	$editionLivre = (htmlspecialchars($_POST["editionLivre"]));
-	$nomAuteur = utf8_decode(ucfirst(ucwords(htmlspecialchars($_POST["nomAuteur"]))));
-	$prenomAuteur = (ucfirst(ucwords(htmlspecialchars($_POST["prenomAuteur"]))));
-	$etatLivreEdit = utf8_decode(htmlspecialchars($_POST["etatLivreEdit"]));
+	$ancienISBN = htmlspecialchars($_POST["ancienISBN"]);
+	$ISBN = htmlspecialchars($_POST["ISBN"]);
+	$titreLivre = ucwords(strtolower(htmlspecialchars($_POST["titreLivre"])));
+	$editionLivre = ucwords(strtolower(htmlspecialchars($_POST["editionLivre"])));
+	$nomAuteur = ucwords(strtolower(htmlspecialchars($_POST["nomAuteur"])));
+	$prenomAuteur = ucwords(strtolower(htmlspecialchars($_POST["prenomAuteur"])));
+	$etatLivreEdit = ucwords(strtolower(htmlspecialchars($_POST["etatLivreEdit"])));
 
 	if($ISBN != $ancienISBN){
 		$req = $bdd->prepare("SELECT * FROM LIVRE WHERE ISBN = :isbn");
@@ -54,11 +54,11 @@ if(isset($_POST["ancienISBN"]) && isset($_POST["ISBN"]) && isset($_POST["titreLi
 
 	$livre = $req->fetch();
 	$paramLivre["ISBN"] = $ISBN;  
-	$paramLivre["titre"] = utf8_encode($titreLivre); 
-	$paramLivre["edition"] = utf8_encode($editionLivre);  
-	$paramLivre["nomAuteur"] = utf8_encode($nomAuteur);  
-	$paramLivre["prenomAuteur"] = utf8_encode($prenomAuteur);  
-	$paramLivre["etat"] = utf8_encode($etatLivreEdit);  
+	$paramLivre["titre"] = $titreLivre; 
+	$paramLivre["edition"] = $editionLivre;  
+	$paramLivre["nomAuteur"] = $nomAuteur;  
+	$paramLivre["prenomAuteur"] = $prenomAuteur;  
+	$paramLivre["etat"] = $etatLivreEdit;  
 	
 	header("content-type: application/json");
 	echo json_encode($paramLivre);	
