@@ -52,7 +52,7 @@ include "database.php";
 						$couleur = "green";
 					}else if($etatLivre == "Non Disponible"){
 						$couleur = "red";
-					}else if($etatLivre == "Commandé"){
+					}else if($etatLivre == "Commande"){
 						$couleur = "orange";
 					}
 					//Définit la couleur selon l'état du livre
@@ -106,7 +106,7 @@ include "database.php";
 								<option value="">Veuillez choisir l'état</option>
 								<option value="Disponible">Disponible</option>
 								<option value="Non Disponible">Non Disponible</option>
-								<option value="Commandé">Commandé</option>
+								<option value="Commande">Commande</option>
 							</select>
 						</div>
 					</div>
@@ -155,7 +155,7 @@ include "database.php";
 								<option value="">Veuillez choisir l'état</option>
 								<option value="Disponible">Disponible</option>
 								<option value="Non Disponible">Non Disponible</option>
-								<option value="Commandé">Commandé</option>
+								<option value="Commande">Commande</option>
 							</select>
 						</div>
 					</div>
