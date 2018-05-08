@@ -277,3 +277,88 @@ jQuery(document).ready(function() {
 	
 	
 });
+
+	$(".emprunter").on('click', function(event) {
+	event.preventDefault();
+	idLigne = $(this);
+	var idBook = $(this).attr("data-idbook"); 
+		$.ajax({
+			url: 'emprunter.php',
+			type: 'POST',
+			data: {idBook: idBook },
+		})
+		.done(function(livre) {	
+			if(livre["error"] != undefined){
+				alert(livre["error"]);
+			}else{
+				idLigneViser = idLigne.parent().parent().parent();
+				if(livre["exemplaire"] == 0){
+					idLigneViser.addClass("hidden");
+				}
+				idLigneViser.children(".exemplaire_Livre").text(livre["exemplaire"]);
+				
+			}
+		})
+		.fail(function(err) {
+			console.log(err);
+		})
+	});
+
+	$(".ajoutwishlist").on('click', function(event) {
+	event.preventDefault();
+	idLigne = $(this);
+	var idBook = $(this).attr("data-idbook"); 
+		$.ajax({
+			url: 'ajoutwishlist.php',
+			type: 'POST',
+			data: {idBook: idBook },
+		})
+		.done(function(livre) {	
+			console.log("success");
+			idLigne.parent().parent().parent().addClass("hidden");
+		})
+		.fail(function(err) {
+			console.log(err);
+		})
+	});
+
+	$(".retourlivre").on('click', function(event) {
+	event.preventDefault();
+	lineBook = $(this);
+	idBook = $(this).attr("data-idbook");
+
+		$.ajax({
+			url: 'retourlivre.php',
+			type: 'POST',
+			data: {idBook: idBook },
+		})
+		.done(function(livre) {
+			lineBook.parent().parent().text(livre);
+			lineBook.parent().remove();
+		})
+		.fail(function(err) {
+			console.log(err);
+		})
+	});
+$(".deletewishlist").on('click', function(event) {
+			event.preventDefault();
+			if (window.confirm("Voulez-vous vraiment le supprimé de la wishlist?")) { 
+			  window.alert("livre supprimé");
+				/* Act on the event */
+				var idBook = $(this).attr("data-idBook");
+				$.ajax({
+					url: 'deletewishlist.php',
+					type: 'POST',
+					data: {idBook: idBook},
+				})
+				.done(function() {
+					console.log("success");
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				$(this).parent().parent().addClass("hidden");
+			}
+			
+		});
+

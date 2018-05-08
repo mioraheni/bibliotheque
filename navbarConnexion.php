@@ -1,7 +1,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top headroom" >
 	<div class="container">
 		<div class="navbar-header">
-			<a href="connecter.php"><img src="assets/images/logo.png" width="200px" height="50px"></a>
+			<img src="assets/images/logo.png" width="200px" height="50px">
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav pull-right navbarConnexion">
@@ -16,8 +16,7 @@
 				}else{
 
 				?>
-				<li><a href="reservation.php">Rechercher un livre</a></li>
-				<li><a href="reservation.php">Rechercher un livre par auteur</a></li>
+				<li><a href="reservation.php">Emprunter un livre</a></li>
 				<li><a href=""></a>
 				<?php 
 				}

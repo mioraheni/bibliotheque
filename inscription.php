@@ -34,9 +34,6 @@
 			case 2:
 				$badRequest = "Les deux mots de passes doivent être identiques";
 				break;	
-			case 3:
-				$badRequest = "Votre mot de passe doit être supérieur à 6 caractères";
-				break;	
 			default:
 				$badRequest = "";
 				break;
@@ -53,7 +50,7 @@
 					<div class="panel panel-default">
 						<div style="padding: 100px">
 							<h3 class="thin text-center"><strong>Inscription</strong></h3>
-							<span style="color:red;"><?php $badRequest = ""; echo $badRequest;?></span>
+							<span style="color:red;"><?php $badRequest=""; echo $badRequest;?></span>
 							<form method="POST" action="">
 								<div class="top-margin">
 									<input type="email" id="mail" class="form-control" name="mel" placeholder="Mail" required size="45" />

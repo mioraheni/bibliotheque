@@ -1,18 +1,28 @@
 <?php
 
 include "database.php";
+//Récupère la date d'aujourd'hui 
 $now = date("Y-m-d");
 $req = $bdd->prepare("SELECT * FROM EMPRUNTS WHERE daterendu IS NULL");
 $req->execute();
+
+//On récupère tous les emprunts qui n'ont pas de date de rendu
 $emprunts = $req->fetchAll();
+//On convertit le temps en seconde 
 $date = strtotime(date("Y-m-d"));
 
+//Pour chaque emprunts dans la bdd
 foreach($emprunts as $empruntLivre){
+	//On convertit la date de la bdd qui est yyyy-mm-dd en format dd-mm-yyyy
 	$dateEmprunt = date("d-m-Y", strtotime($empruntLivre["dateemprunt"]));
+	//On stocke la date dans une variable
 	$dateEmpruntLivre = $dateEmprunt;
+	//On convertit la date de l'emprunt en seconde
 	$dateEmprunt = strtotime($dateEmprunt);
+	//On fait une soustraction de la date d'aujourd'hui par la date d'emprunt
 	$dateTotal = $date - $dateEmprunt;
 	//On rajoute +1 pour compter le jour où la personne a emprunté le livre
+	//On divise les secondes par les minutes (60 secondes dans une minute) puis par les heures (60 minutes dans une heure) puis on divise par le nombre d'heure dans une journée soit 24h puis on rajoute 1 jour en plus dans le calcul car il ne prend pas en compte le jour d'aujourd'hui
 	$dateTotal = ($dateTotal/60/60/24)+1 . "<br>";
 
 	//Si la date est égale à 8 jours, on envoie un mail à l'utilisateur pour l'avertis que le livre doit être rendu avant les deux jours
@@ -44,7 +54,7 @@ foreach($emprunts as $empruntLivre){
 		$header.='Content-Type:text/html; charset="uft-8"'."\n";
 		$header.='Content-Transfer-Encoding: 8bit';
 		
-		echo $message='
+		$message='
 		<html>
 			<body>
 				<div align="center">
@@ -62,11 +72,9 @@ foreach($emprunts as $empruntLivre){
 		</html>
 		';
 		//envoie du mail, ne fonctionne pas en serveur local
-		// mail($mail, $subject, $message, $header);
+		mail($mail, $subject, $message, $header);
 	}
 }
-
-
 
 
 

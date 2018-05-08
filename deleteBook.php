@@ -10,3 +10,4 @@ if(isset($_POST["idBook"]) && $_POST["idBook"] != ""){
 }else{
 	header("location:manageBiblio.php");
 }
+?>

@@ -38,10 +38,12 @@ include "database.php";
 				if($countLivre > 0){
 					echo '<table class="table">
 						<tr>
-							<th>ISBN</th>
+							<th>ISBN du livre</th>
 							<th>Titre du livre</th>
 							<th>Edition</th>
+							<th>Auteur</th>
 							<th>Date Emprunt</th>
+							<th>Date de Retour</th>
 						</tr>';
 						while($mesLivres = $req->fetch()){
 							echo "<tr>";
@@ -49,10 +51,22 @@ include "database.php";
 							$req2->bindValue(":isbn", $mesLivres["ISBN"], PDO::PARAM_STR);
 							$req2->execute();
 							$livre = $req2->fetch();
-							echo "<td>" . $mesLivres["ISBN"] . "</td>";
+							echo "<td>" . utf8_encode($livre["ISBN"]) . "</td>";
 							echo "<td>" . utf8_encode($livre["titre"]) . "</td>";
 							echo "<td>" . utf8_encode($livre["edition"]) . "</td>";
+							
+							$req3 = $bdd->prepare("SELECT * FROM auteur WHERE idAuteur = :auteur");
+							$req3->bindValue(":auteur", $livre["idAuteur"], PDO::PARAM_INT);
+							$req3->execute();
+							$auteur = $req3->fetch();
+							echo "<td class='idAuteur_livre'>" . utf8_encode($auteur["prenomAuteur"]) . " " . utf8_encode($auteur["nomAuteur"]) . "</td>";
 							echo "<td>" . utf8_encode($mesLivres["dateemprunt"]) . "</td>";
+							if ($mesLivres["daterendu"]== NULL) {
+								echo "<td><a><span data-idBook='" . $livre["ISBN"] . "' class='retourlivre' style='cursor:pointer;'>Retourner</span></a></td>";
+							}
+							else{
+								echo "<td>" . utf8_encode($mesLivres["daterendu"]) . "</td>";
+							}
 							echo "</tr>";
 						}
 					echo '</table>';
@@ -63,20 +77,36 @@ include "database.php";
 				?>
 				<h4>Votre Wishlist</h4>
 				<?php
-					$req3= $bdd->prepare("SELECT * FROM Wishlist WHERE idUser = :iduser");
+
+					echo '<table class="table">
+						<tr>
+							<th>Titre du livre</th>
+							<th>Edition</th>
+							<th>Auteur</th>
+							<th>Supprimer de la Wishlist</th>
+						</tr>';
+					$req3 = $bdd->prepare("SELECT * FROM Wishlist WHERE idUser = :iduser");
 					$req3->bindValue(":iduser", $_SESSION["idUser"], PDO::PARAM_INT);
 					$req3->execute();
-					while ($Wishlist=$req3->fetch()){
+					$mesLivres = $req3->fetchAll();
+					foreach($mesLivres as $list){
+						$livreISBN = $list["ISBN"];
+						$req = $bdd->prepare("SELECT * FROM LIVRE WHERE ISBN = :isbn");
+						$req->bindValue(":isbn", $livreISBN, PDO::PARAM_STR);
+						$req->execute();
+						$livre = $req->fetch();
 						echo "<tr>";
-						$req2 = $bdd->prepare("SELECT * FROM LIVRE WHERE ISBN = :isbn");
-							$req2->bindValue(":isbn", $mesLivres["ISBN"], PDO::PARAM_STR);
-							$req2->execute();
-							$livre = $req2->fetch();
-							echo "<td>" . $mesLivres["ISBN"] . "</td>";
-							echo "<td>" . utf8_encode($livre["titre"]) . "</td>";
-							echo "<td>" . utf8_encode($livre["edition"]) . "</td>";
-							echo "</tr>";
+						echo "<td>" . $livre["titre"] . "</td>";
+						echo "<td>" . $livre["edition"] . "</td>";
+						$req3 = $bdd->prepare("SELECT * FROM auteur WHERE idAuteur = :auteur");
+							$req3->bindValue(":auteur", $livre["idAuteur"], PDO::PARAM_INT);
+							$req3->execute();
+							$auteur = $req3->fetch();
+							echo "<td class='idAuteur_livre'>" . utf8_encode($auteur["prenomAuteur"]) . " " . utf8_encode($auteur["nomAuteur"]) . "</td>";
+							echo "<td> <i class='fa fa-times deletewishlist' data-idBook='" . $list["ISBN"] . "' style='color:red; padding-left:60px; cursor:pointer;'></i> </td>";
+						echo "</tr>";
 					}
+					echo "</table>";
 				?>
 			<?php
 				}
